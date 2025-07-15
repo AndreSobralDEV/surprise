@@ -129,10 +129,23 @@
 
   <button onclick="espalharAmor()">Clique aqui para uma surpresa 💌</button>
 
-  <iframe width="0" height="0" 
-    src="https://www.youtube.com/watch?v=szts-5Zs5_8&list=RDszts-5Zs5_8&start_radio=1" 
-    frameborder="0" allow="autoplay" allowfullscreen>
-  </iframe>
+<audio id="player" src="exagerado-cazuza.mp3" preload="auto" autoplay muted></audio>
+
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const audio = document.getElementById("player");
+
+    audio.addEventListener("canplaythrough", function () {
+      audio.currentTime = 90; // Começa em 1:30 (90 segundos)
+      audio.muted = false;    // Desmutar o áudio
+      audio.play().catch((e) => {
+        console.log("Reprodução bloqueada pelo navegador até haver interação do usuário.");
+      });
+    }, { once: true });
+  });
+</script>
+
+
 
   <script>
     // Carrossel
