@@ -22,6 +22,27 @@
       color: #fff;
     }
 
+    #botaoIniciar {
+      margin: 40px;
+      padding: 30px 60px;
+      font-size: 50px;
+      background-color: #fff;
+      color: #c40e26;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.5s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #botaoIniciar:hover {
+      background-color: #ffdde1;
+    }
+
+    #conteudoPrincipal {
+      display: none;
+    }
+
     h1 {
       font-size: 3em;
       margin-bottom: 20px;
@@ -80,14 +101,17 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: none;
       position: absolute;
       top: 0;
       left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 0;
     }
 
     .carrossel img.ativo {
-      display: block;
+      opacity: 1;
+      z-index: 1;
     }
 
     .botoes {
@@ -95,10 +119,25 @@
     }
 
     .botoes button {
-      padding: 10px 20px;
-      margin: 0 10px;
-      font-size: 16px;
+      padding: 18px 36px;
+      margin: 10px;
+      font-size: 32px;
+      font-weight: bold;
+      background-color: #fff;
+      color: #c40e26;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
     }
+
+    .botoes button:hover {
+      background-color: #ffe0e6;
+      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
     img {
       border-radius: 15px;
     }
@@ -106,49 +145,47 @@
 </head>
 <body>
 
-  <h1>Feliz Aniversário, Amor! 🎂❤️</h1>
+  <button id="botaoIniciar" onclick="iniciarSurpresa()">Começar 🎵💖</button>
 
-  <div class="carrossel">
-    <img src="IMG-20190310-WA0004.jpg" class="ativo" alt="Foto 1">
-    <img src="IMG-20190310-WA0005.jpg" alt="Foto 2">
-    <img src="IMG-20190315-WA0002.jpg" alt="Foto 3">
-    <img src="IMG-20201122-WA0004.jpg" alt="Foto 4">
+  <div id="conteudoPrincipal">
+    <h1>Feliz Aniversário, Amor! 🎂❤️</h1>
+
+    <div class="carrossel">
+      <img src="IMG-20190310-WA0004.jpg" class="ativo" alt="Foto 1">
+      <img src="IMG-20190310-WA0005.jpg" alt="Foto 2">
+      <img src="IMG-20190315-WA0002.jpg" alt="Foto 3">
+      <img src="IMG-20201122-WA0004.jpg" alt="Foto 4">
+      <img src="IMG-20201206-WA0019.jpg" alt="Foto 5">
+      <img src="IMG-20201221-WA0003.jpg" alt="Foto 6">
+      <img src="IMG-20201221-WA0013.jpg" alt="Foto 7">
+      <img src="IMG-20201221-WA0015.jpg" alt="Foto 8">
+      <img src="IMG-20201221-WA0018.jpg" alt="Foto 9">
+      <img src="IMG-20201221-WA0020.jpg" alt="Foto 10">
+      <img src="IMG-20201221-WA0021.jpg" alt="Foto 11">
+      <img src="IMG-20210201-WA0041.jpg" alt="Foto 12">
+      <img src="IMG-20210201-WA0036.jpg" alt="Foto 13">
+      <img src="IMG-20210201-WA0037.jpg" alt="Foto 14">
+      <img src="IMG-20201228-WA0035.jpg" alt="Foto 15">
+    </div>
+
+    <div class="botoes">
+      <button onclick="anterior()">⬅ Anterior</button>
+      <button onclick="proxima()">Próxima ➡</button>
+    </div>
+
+    <p>
+      Hoje é o seu dia, e eu queria te surpreender com algo diferente.<br>
+      Você é a luz da minha vida, minha melhor amiga, meu porto seguro e meu amor verdadeiro.  
+      Eu te amo mais do que qualquer código poderia expressar. 💻❤️  
+      Que esse novo ano traga ainda mais sorrisos, sonhos e momentos ao nosso lado!
+    </p>
+
+    <button onclick="espalharAmor()">Clique aqui para uma surpresa 💌</button>
   </div>
 
-  <div class="botoes">
-    <button onclick="anterior()">⬅ Anterior</button>
-    <button onclick="proxima()">Próxima ➡</button>
-  </div>
-
-  <p>
-    Hoje é o seu dia, e eu queria te surpreender com algo diferente.<br>
-    Você é a luz da minha vida, minha melhor amiga, meu porto seguro e meu amor verdadeiro.  
-    Eu te amo mais do que qualquer código poderia expressar. 💻❤️  
-    Que esse novo ano traga ainda mais sorrisos, sonhos e momentos ao nosso lado!
-  </p>
-
-  <button onclick="espalharAmor()">Clique aqui para uma surpresa 💌</button>
-
-<audio id="player" src="exagerado-cazuza.mp3" preload="auto" autoplay muted></audio>
-
-<script>
-  window.addEventListener("DOMContentLoaded", function () {
-    const audio = document.getElementById("player");
-
-    audio.addEventListener("canplaythrough", function () {
-      audio.currentTime = 90; // Começa em 1:30 (90 segundos)
-      audio.muted = false;    // Desmutar o áudio
-      audio.play().catch((e) => {
-        console.log("Reprodução bloqueada pelo navegador até haver interação do usuário.");
-      });
-    }, { once: true });
-  });
-</script>
-
-
+  <audio id="player" src="exagerado-cazuza.mp3" preload="auto"></audio>
 
   <script>
-    // Carrossel
     const imagens = document.querySelectorAll('.carrossel img');
     let indiceAtual = 0;
 
@@ -167,22 +204,69 @@
       mostrarImagem(indiceAtual);
     }
 
-    // Corações + Alerta
-    function espalharAmor() {
-      for (let i = 0; i < 40; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.top = '100vh';
-        heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-        heart.innerText = '❤️';
-        document.body.appendChild(heart);
+    function iniciarSurpresa() {
+      const botao = document.getElementById('botaoIniciar');
+      const conteudo = document.getElementById('conteudoPrincipal');
+      const audio = document.getElementById('player');
 
-        setTimeout(() => heart.remove(), 4000);
-      }
+      botao.style.display = 'none';
+      conteudo.style.display = 'block';
 
-      alert("Você é o meu presente todos os dias. Te amo muito! 💖");
+      // Iniciar música com fade-in
+      audio.currentTime = 25;
+      audio.volume = 0;
+      audio.play().catch(err => {
+        console.log("Erro ao iniciar música:", err);
+      });
+
+      let volumeAtual = 0;
+      const fadeIn = setInterval(() => {
+        if (volumeAtual < 1) {
+          volumeAtual += 0.02;
+          audio.volume = Math.min(volumeAtual, 1);
+        } else {
+          clearInterval(fadeIn);
+        }
+      }, 100);
+
+      // Carrossel automático
+      setInterval(proxima, 5000);
     }
+
+function espalharAmor() {
+  const totalCorações = 40;
+
+  for (let i = 0; i < totalCorações; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+
+    // Posição inicial
+    heart.style.left = `${Math.random() * 100}vw`;
+    heart.style.top = '100vh';
+
+    // Tamanho e rotação aleatória
+    const tamanho = Math.random() * 30 + 20; // entre 20px e 50px
+    heart.style.fontSize = `${tamanho}px`;
+    heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    // Velocidade aleatória de subida
+    const duracao = Math.random() * 2 + 3; // entre 3s e 5s
+    heart.style.animationDuration = `${duracao}s`;
+
+    // Emoji aleatório entre 3 corações
+    const emojis = ['❤️', '💖', '💕'];
+    heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), duracao * 1000);
+  }
+
+  // Mensagem carinhosa
+  setTimeout(() => {
+    alert("Você é o meu presente todos os dias. Te amo muito! 💖");
+  }, 300);
+}
   </script>
 </body>
 </html>
