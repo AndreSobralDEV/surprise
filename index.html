@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Feliz Aniversário, Meu Amor! 💖</title>
+  <title>De André Para Vitória</title>
   <style>
     html, body {
       height: 100%;
@@ -217,6 +217,14 @@
       <img src="IMG-20210201-WA0036.jpg" alt="Foto 13">
       <img src="IMG-20210201-WA0037.jpg" alt="Foto 14">
       <img src="IMG-20201228-WA0035.jpg" alt="Foto 15">
+      <img src="IMG-20250607-WA0022.jpg" alt="Foto 16">
+      <img src="IMG-20250606-WA0053.jpg" alt="Foto 17">
+      <img src="IMG-20250414-WA0038.jpg" alt="Foto 18">
+      <img src="IMG-20250329-WA0066.jpg" alt="Foto 19">
+      <img src="IMG-20250329-WA0065.jpg" alt="Foto 20">
+      <img src="IMG-20250318-WA0089.jpg" alt="Foto 21">
+      <img src="IMG-20250215-WA0009.jpg" alt="Foto 22">
+      <img src="IMG-20250215-WA0008.jpg" alt="Foto 23">
     </div>
 
     <div class="botoes">
@@ -282,9 +290,17 @@
         }
       }, 100);
 
-      // Carrossel automático
-      setInterval(proxima, 7000);
-    }
+      // Carrossel automático até a última imagem
+      function iniciarCarrosselAteUltima() {
+        if (indiceAtual < imagens.length - 1) {
+          setTimeout(() => {
+            proxima();
+            iniciarCarrosselAteUltima();
+          }, 7000);
+        }
+      }
+      iniciarCarrosselAteUltima();
+}
 
 function espalharAmor() {
   const totalCorações = 40;
