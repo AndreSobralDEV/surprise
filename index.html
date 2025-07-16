@@ -44,22 +44,57 @@
     }
 
     h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      animation: fadeIn 2s ease-in-out;
+      font-size: 3.5em;                 /* Um pouco maior para impacto */
+      margin-bottom: 30px;              /* Mais espaço abaixo */
+      font-weight: 800;                 /* Negrito forte */
+      letter-spacing: 2px;              /* Espaçamento entre letras para sofisticação */
+      color: #fff;                     /* Cor branca para contraste */
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);  /* Sombra sutil para destaque */
+      animation: fadeInUp 2s ease forwards;
+    }
+
+    /* Nova animação mais elegante */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     p {
-      font-size: 1.4em;
+      font-size: 1.5em;                 /* Leve aumento da fonte para melhor leitura */
       max-width: 600px;
-      margin: auto;
-      animation: fadeIn 4s ease-in-out;
+      margin: 20px auto 40px;           /* Espaçamento vertical mais confortável */
+      line-height: 1.6;                 /* Espaçamento entre linhas para facilitar a leitura */
+      color: #fff;                     /* Cor branca para contraste */
+      font-weight: 500;                /* Peso intermediário para suavidade */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      animation: fadeInText 3s ease forwards;
+      text-align: center;              /* Centraliza o texto */
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3); /* Sombra sutil para destaque */
     }
+
+    /* Animação mais suave e elegante */
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
 
     button {
       margin: 20px;
       padding: 15px 30px;
-      font-size: 18px;
+      font-size: 30px;
       background-color: #fff;
       color: #c40e26;
       border: none;
@@ -70,7 +105,11 @@
 
     button:hover {
       background-color: #ffdde1;
+      box-shadow: 0 8px 15px rgba(255, 220, 225, 0.6);
+      transform: scale(1.05);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
+
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(30px); }
@@ -92,9 +131,15 @@
 
     .carrossel {
       width: 600px;
+      max-width: 90vw;          /* Responsivo: no máximo 90% da largura da viewport */
       height: 600px;
+      max-height: 90vh;         /* Responsivo: no máximo 90% da altura da viewport */
+      margin: 0 auto 30px;      /* Centraliza horizontalmente e dá margem abaixo */
       position: relative;
       overflow: hidden;
+      border-radius: 20px;      /* Bordas arredondadas */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Sombra suave para destaque */
+      background-color: #000;   /* Fundo escuro para contraste */
     }
 
     .carrossel img {
@@ -105,14 +150,19 @@
       top: 0;
       left: 0;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      transition: opacity 1.2s ease-in-out;
       z-index: 0;
+      border-radius: 20px;      /* Bordas arredondadas para as imagens também */
+      user-select: none;        /* Evita seleção da imagem */
+      pointer-events: none;     /* Evita interação acidental */
     }
 
     .carrossel img.ativo {
       opacity: 1;
       z-index: 1;
+      pointer-events: auto;     /* Só a imagem ativa pode ser interagida (se quiser) */
     }
+
 
     .botoes {
       margin-top: 10px;
@@ -148,7 +198,7 @@
   <button id="botaoIniciar" onclick="iniciarSurpresa()">Começar 🎵💖</button>
 
   <div id="conteudoPrincipal">
-    <h1>Feliz Aniversário, Amor! 🎂❤️</h1>
+    <h1>Meu coração é seu, hoje e sempre. Amo você além das palavras.</h1>
 
     <div class="carrossel">
       <img src="IMG-20190310-WA0004.jpg" class="ativo" alt="Foto 1">
@@ -174,10 +224,12 @@
     </div>
 
     <p>
-      Hoje é o seu dia, e eu queria te surpreender com algo diferente.<br>
-      Você é a luz da minha vida, minha melhor amiga, meu porto seguro e meu amor verdadeiro.  
-      Eu te amo mais do que qualquer código poderia expressar. 💻❤️  
-      Que esse novo ano traga ainda mais sorrisos, sonhos e momentos ao nosso lado!
+        Amor, eu te amo mais do que palavras podem dizer.<br>
+        Em cada pensamento, em cada gesto, você está presente.  
+        Tudo o que faço, faço pensando em como te ver sorrir,  
+        em como tornar seus dias mais leves, felizes e cheios de amor.<br>
+        Você é minha inspiração constante, meu motivo para ser melhor a cada dia. ❤️💻  
+        Quero construir ao seu lado uma vida cheia de sonhos realizados e momentos inesquecíveis.
     </p>
 
     <button onclick="espalharAmor()">Clique aqui para uma surpresa 💌</button>
@@ -230,7 +282,7 @@
       }, 100);
 
       // Carrossel automático
-      setInterval(proxima, 5000);
+      setInterval(proxima, 7000);
     }
 
 function espalharAmor() {
